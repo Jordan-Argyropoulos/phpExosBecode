@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Générateur d'excuses</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Logo" class="rounded mx-auto d-block img-thumbnail" alt="Responsive image">
+        <h1 class="h1 text-center">Générateur d'excuses pour l'école</h1>
+        <form method="POST" action="excuse_generator.php">
+
+            <div class="form-group">
+            <label for="child_name">Nom de l'enfant:</label>
+            <input type="text" id="child_name" name="child_name" required><br>
+            </div>
+
+            <div class="form-group">
+            <label for="gender">Genre:</label>
+            <input type="radio" id="gender" name="gender" value="Fille" required> Fille
+            <input type="radio" id="gender" name="gender" value="Garçon" required> Garçon<br>
+            </div>
+
+            <div class="form-group">
+            <label for="teacher_name">Nom du professeur:</label>
+            <input type="text" id="teacher_name" name="teacher_name" required><br>
+            </div>
+
+            <div class="form-group">
+            <label>Raison de l'absence:</label><br>
+            <input type="radio" name="absence_reason" value="Maladie" required> Maladie<br>
+            <input type="radio" name="absence_reason" value="Décès d'un proche" required> Décès d'un proche<br>
+            <input type="radio" name="absence_reason" value="Activité extra-scolaire" required> Activité extra-scolaire<br>
+            <input type="radio" name="absence_reason" value="Autre" required> Autre<br>
+            </div>
+
+            <div class="form-group">
+            <input type="submit" value="Générer excuse">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
