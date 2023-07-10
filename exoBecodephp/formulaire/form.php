@@ -7,8 +7,6 @@ function debug($text)
 }
 
 
-# include("D:/wamp64/www/exoBecodephp/phpExosBecode/exoBecodephp/formulaire/connectorPDO.php");
-
 // Inclure le fichier connectorPDO.php
 require_once 'connectorPDO.php';
 
