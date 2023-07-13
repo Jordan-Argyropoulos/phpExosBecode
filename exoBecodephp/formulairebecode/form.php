@@ -5,6 +5,15 @@ function debug($text)
     ?><pre><?php print_r($text); ?></pre><?php
 }
 
+$countryOptions = [
+    "" => "Country",
+    "1" => "Russia",
+    "2" => "Germany",
+    "3" => "France",
+    "4" => "Armenia",
+    "5" => "USA"
+];
+
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitization des champs
@@ -27,9 +36,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contact_lastname = sanitizeInput($_POST["contact_lastname"]);
     $email = sanitizeInput($_POST["email"]);
     $number = sanitizeInput($_POST["number"]);
-    $recorded = sanitizeInput($_POST["recorded"]); }
+    $recorded = sanitizeInput($_POST["recorded"]);
+    $fileToUpload = move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],
+    $target_path.'/'.$_FILES["fileToUpload"]["name"]);
+    header('Content-type:image/jpg');
+ }
 
+    $countryText = isset($countryOptions[$country]) ? $countryOptions[$country] : "";
     
+    // Fonction pour sanitizé les données
+function sanitizeInput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
     // Affichage des données saisies
     echo "<h2>Données saisies :</h2>";
     echo "<p>Date de l'événement : $bdate</p>";
@@ -38,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p>Description de l'événement : $description</p>";
     echo "<p>Nom du promoteur : $promo</p>";
     echo "<p>Nom de la salle : $venue_name</p>";
-    echo "<p>Adresse de la salle : $venue_address_1, $venue_address_2, $city, $region, $postal, $country</p>";
+    echo "<p>Adresse de la salle : $venue_address_1, $venue_address_2, $city, $region, $postal, $countryText</p>";
     echo "<p>Nombre attendu de participants : $attendance</p>";
     echo "<p>Type de performance : $performance</p>";
     echo "<p>Temps de jeu (en minutes) : $time</p>";
@@ -46,12 +68,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p>Email du contact : $email</p>";
     echo "<p>Numéro de contact : $number</p>";
     echo "<p>Enregistrement de l'événement : $recorded</p>";
-
-// Fonction pour sanitizé les données
-function sanitizeInput($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+    readfile($fileToUpload);
