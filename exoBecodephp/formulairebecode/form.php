@@ -51,7 +51,7 @@
     }
 
     if (!is_numeric($artist)) {
-        die('The artist must be a number.');
+        die('Select a artist please.');
     }
 
     if (strlen($description) > 1000) {
